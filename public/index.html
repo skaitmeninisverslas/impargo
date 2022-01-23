@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#000000"/>
+    <meta
+            name="description"
+            content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png"/>
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+
+<div class="main-body">
+    <div class="content">
+
+
+        <div class="planner">
+
+            <div class="top">
+
+                <div class="left">
+                    <div class="type">
+                        Planner
+                    </div>
+                    <i class="fas fa-info-circle info-circle"></i>
+                </div>
+
+                <div class="right">
+                    <button class="button download-pdf planner-btn yellow">
+                        <i class="fas fa-file"></i>
+                        <span>Create new order</span>
+                    </button>
+                    <button class="button download-pdf planner-btn">
+                        <i class="fas fa-file"></i>
+                        <span>Create offer PDF</span>
+                    </button>
+                    <button class="button planner-btn">
+                        <i class="fas fa-file btn"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="bottom">
+
+                <div class="left item">
+                    <i class="fas fa-gas-pump icon"></i>
+                    <select class="select" name="options" id="vehicle-options">
+                        <option value="myCompany">myCompany</option>
+                        <option value="mileage">E.g by mileage</option>
+                        <option value="kilometer">E.g by full and empty kilometers</option>
+                        <option value="dailyRate">E.g by daily rate</option>
+                    </select>
+                </div>
+
+                <div class="middle item">
+                    <i class="fas fa-truck icon"></i>
+                    <select class="select" name="options" id="vehicle-type">
+                        <option value="myCompany">E.g. 40t standard</option>
+                        <option value="mileage">E.g. 40t tanker</option>
+                        <option value="kilometer">E.g 40t articulated train (long haul)</option>
+                        <option value="dailyRate">E.g 3.5 transporter (short haul)</option>
+                    </select>
+                    <div id="toggle-edit-vehicle">
+                        <i class="fas fa-pen icon pen"></i>
+                    </div>
+                </div>
+
+                <div class="right item">
+                    <i class="fas fa-user"></i>
+                    <select class="select" name="options" id="driver-options">
+                        <option value="kilometer">E.g Germany (long haul)</option>
+                        <option value="dailyRate">E.g Germany (short / medium haul)</option>
+                    </select>
+                    <div id="toggle-edit-driver">
+                        <i class="fas fa-pen icon pen"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="main">
+
+            <div class="slider">
+
+                <div class="stops">
+
+                    <div class="heading">
+                        <i class="fas fa-route route"></i>
+                        <span class="title">Stops</span>
+                    </div>
+
+                    <hr>
+
+                    <div class="stop-input-group input-container">
+
+
+
+                    </div>
+
+                    <div class="extended-options">
+
+                        <div class="optimized-option">
+                            <i class="fas fa-stopwatch"></i>
+                            <span id="optimize">Optimize</span>
+                        </div>
+                        <div id="reset" class="reset-option">
+                            <i class="fas fa-archive"></i>
+                            <span>Reset</span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="route">
+
+                    <div class="heading">
+
+                        <div class="left">
+                            <i class="fas fa-route route"></i>
+                            <span class="title">Routing Options</span>
+                        </div>
+
+                        <button class="button" onclick="routingOptions()">
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                    </div>
+
+                    <hr>
+
+                    <div id="body">
+                        <div class="mode">
+
+                            <div class="mode-tag">
+                                <span >Routing mode </span>
+                                <i class="fas fa-info-circle info"></i>
+                            </div>
+
+                            <select class="form-select country-select" aria-label="Disabled select example">
+                                <option value="Standard" selected>Standard</option>
+                                <option value="Cost Optimized"  disabled>Cost Optimized</option>
+                                <option value="Avoid tolls" disabled>Avoid tolls</option>
+                            </select>
+
+                            <div class="traffic-tag">
+                                <span class="pro-tag">PRO</span>
+                                <span>Traffic</span>
+                                <i class="fas fa-info-circle info"></i>
+                            </div>
+
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" disabled>
+
+                            <div class="time-tag">
+                                <span>Additional time</span>
+                                <i class="fas fa-info-circle info"></i>
+                            </div>
+
+                            <input type="range" class="form-range" min="0" max="1000" step="0.5" id="customRange3">
+
+                        </div>
+
+                        <hr>
+
+                        <div class="mode">
+
+                            <div class="mode-tag">
+                                <span>Axles</span>
+                            </div>
+
+                            <select class="axles form-select country-select" aria-label="Disabled select example">
+                                <option value="2AxlesAuto" selected>2</option>
+                                <option value="3AxlesAuto">3</option>
+                                <option value="4AxlesAuto">4</option>
+                                <option value="5AxlesTruck">5+</option>
+                            </select>
+
+                            <div class="traffic-tag">
+                                <span>Gross vehicle weight</span>
+                            </div>
+
+                            <select class="form-select country-select" aria-label="Disabled select example">
+                                <option value="<= 3.5t">less then equal to 3.5t</option>
+                                <option value="<= 7.49t">less then equal to 7.49t</option>
+                                <option value="<= 11.49t">less then equal to 11.49t</option>
+                                <option value="<= 12t">less then equal to 12t</option>
+                                <option value="<= 18t">less then equal to 18t</option>
+                                <option value="<= 32t">less then equal to 32t</option>
+                                <option value="<= 40t" selected>less then equal to 40t</option>
+                            </select>
+
+                            <div class="time-tag">
+                                <span>Emission class</span>
+                                <i class="fas fa-info-circle info"></i>
+                            </div>
+
+                            <select class="form-select country-select" aria-label="Disabled select example">
+                                <option value="EURO 0">EURO 0</option>
+                                <option value="EURO 1">EURO 1</option>
+                                <option value="EURO 2">EURO 2</option>
+                                <option value="EURO 3">EURO 3</option>
+                                <option value="EURO 4">EURO 4</option>
+                                <option value="EURO 5">EURO 5</option>
+                                <option value="EURO 6" selected>EURO 6</option>
+                                <option value="EEV">EEV</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="map"></div>
+
+            <div class="footer-data">
+                <div class="distance">
+                    <span>
+                        Distance
+                    </span>
+                    <div class="total-distance">
+                        0
+                    </div>
+                </div>
+                <div class="time">
+                    <span>
+                        Time
+                    </span>
+                    <div class="total-time">
+                        0
+                    </div>
+                </div>
+                <div class="Cost-per-KM">
+                    <span>
+                        Cost per KM
+                    </span>
+                    <div class="total-cost-per-km">
+                        0
+                    </div>
+                </div>
+                <div class="cost">
+                    <span>
+                        Total cost
+                    </span>
+                    <div class="total-cost">
+                        0
+                    </div>
+                </div>
+                <div class="toll">
+                    <span>
+                        Toll
+                    </span>
+                    <div class="total-toll">
+                        0
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-vehicle" class="display-none">
+        <div class="dialog">
+            <div class="header">
+                <div class="left">
+                    <i class="fas fa-truck"></i>
+                    <span>Edit vehicle</span>
+                </div>
+                <div class="right">
+                    <div id="close-edit-vehicle">
+                        <i class="fas fa-close"></i>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="detail">
+
+                <div class="left">
+                    <div class="title">Detail</div>
+                    <div class="body">
+                        <span class="input-label">Name</span>
+                        <input type="text" placeholder="E.g. 40t standard">
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="title"><span>&nbsp;</span></div>
+                    <div class="body">
+                    <span class="input-label">
+                    Trailer
+                </span>
+                        <select class="form-select country-select" aria-label="Disabled select example">-->
+                            <option value="none">none</option>
+                            <option value="Standard" selected>Standard</option>
+                            <option value="Mega">E.g Mega</option>
+                            <option value="Cooler">E.g Cooler</option>
+                            <option value="Tanker">E.g Tanker</option>
+                            <option value="Articulated train">E.g Articulated train</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="finance">
+
+                <div class="left">
+                    <div class="title">FINANCE</div>
+                    <div class="body">
+                        <span class="input-label">Type of finance</span>
+                        <select class="form-select country-select" aria-label="Disabled select example">-->
+                            <option value="Purchased" selected>Purchased</option>
+                            <option value="Leased">Leased</option>
+                        </select>
+                        <span class="input-label">Price <i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="Price in $" value="105000">
+                        <span class="input-label">Lifetime <i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="years" value="3">
+                        <span class="input-label">Mileage <i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="km/year" value="140000">
+                        <span class="input-label">Residual value <i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="$" value="74250">
+                        <span class="input-label">Working days</span>
+                        <input type="text" placeholder="days/years" value="240">
+                        <span class="input-label">Working hours</span>
+                        <input type="text" placeholder="days/years" value="10">
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="title">COSTS</div>
+                    <div class="body">
+                        <span class="input-label">Usage type</span>
+                        <select class="form-select country-select" aria-label="Disabled select example">-->
+                            <option value="Long-haul" selected>Long-haul</option>
+                            <option value="Short-haul">Short-haul</option>
+                        </select>
+                        <span class="input-label">Fuel consumption <i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="1/100km" value="33">
+                        <span class="input-label">Lubricants <i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="%" value="1">
+                        <span class="input-label">Tire cost <i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="$ / years" value="2205">
+                        <span class="input-label">Tax <i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="$ / years" value="670">
+                        <span class="input-label">Insurance <i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="$ / years" value="5800">
+                        <span class="input-label">Service <i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="$ / years" value="7000">
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="toll">
+
+                <div class="left">
+                    <div class="title">TOLL</div>
+                    <div class="body">
+                        <span class="input-label">Axles</span>
+                        <select class="axles form-select country-select" aria-label="Disabled select example">
+                            <option value="2AxlesAuto" selected>2</option>
+                            <option value="3AxlesAuto">3</option>
+                            <option value="4AxlesAuto">4</option>
+                            <option value="5AxlesTruck">5+</option>
+                        </select>
+                        <span class="input-label">Gross vehicle weight</span>
+                        <select class="form-select country-select" aria-label="Disabled select example">
+                            <option value="<= 3.5t">less then equal to 3.5t</option>
+                            <option value="<= 7.49t">less then equal to 7.49t</option>
+                            <option value="<= 11.49t">less then equal to 11.49t</option>
+                            <option value="<= 12t">less then equal to 12t</option>
+                            <option value="<= 18t">less then equal to 18t</option>
+                            <option value="<= 32t">less then equal to 32t</option>
+                            <option value="<= 40t" selected>less then equal to 40t</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="title"><span>&nbsp;</span></div>
+                    <div class="body">
+                        <span class="input-label">Emission class</span>
+                        <select class="form-select country-select" aria-label="Disabled select example">
+                            <option value="EURO 0">EURO 0</option>
+                            <option value="EURO 1">EURO 1</option>
+                            <option value="EURO 2">EURO 2</option>
+                            <option value="EURO 3">EURO 3</option>
+                            <option value="EURO 4">EURO 4</option>
+                            <option value="EURO 5">EURO 5</option>
+                            <option value="EURO 6" selected>EURO 6</option>
+                            <option value="EEV">EEV</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="footer">
+                <div></div>
+                <button id="save-edit-vehicle">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-driver" class="display-none">
+        <div class="dialog">
+
+            <div class="header">
+                <div class="left">
+                    <i class="fas fa-truck"></i>
+                    <span>Edit driver</span>
+                </div>
+                <div class="right">
+                    <div id="close-edit-driver">
+                        <i class="fas fa-close"></i>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="detail">
+
+                <div class="left">
+                    <div class="title">Detail</div>
+                    <div class="body">
+                        <span class="input-label">Name</span>
+                        <input type="text" placeholder="E.g. Germany (long haul)">
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="title"><span>&nbsp;</span></div>
+                    <div class="body">
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="finance">
+
+                <div class="left">
+                    <div class="title">FINANCE</div>
+                    <div class="body">
+                        <span class="input-label">Wage</span>
+                        <input type="text" placeholder="Price in $" value="31000">
+                        <span class="input-label">Social Charges<i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="Price in $" value="25.76">
+                        <span class="input-label">Additional costs<i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="years" value="4820">
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="title">COSTS</div>
+                    <div class="body">
+                        <span class="input-label">Working days <i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="$ / years" value="240">
+                        <span class="input-label">Working hours <i class="label-icon fas fa-info-circle"></i></span>
+                        <input type="text" placeholder="$ / years" value="8">
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="footer">
+                <div></div>
+                <button id="save-edit-driver">Save</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div id="inputRow" class="input-div  input-group mb-3 input-row display-none">
+    <select class="form-select country-select" aria-label="Disabled select example">
+        <option selected>All</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+    </select>
+
+    <input class="controls place-input origin-input" type="text" placeholder="Enter an origin location" />
+
+    <button class="first star-btn">
+        <i class="fas fa-star button close"></i>
+    </button>
+    <button id="default-btn-rare" class="close-btn-rare">
+        <i class="fas fa-close button close"></i>
+    </button>
+</div>
+
+<div id="heavy-toll" class="toll-div display-none">
+
+    <div class="time">
+        <span class="distance">distance</span>
+        <span class="duration">duration</span>
+    </div>
+
+    <div class="toll">
+        <span>toll:</span>
+        <span class="toll">toll :</span>
+    </div>
+
+</div >
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"
+        integrity="sha512-fzff82+8pzHnwA1mQ0dzz9/E0B+ZRizq08yZfya66INZBz86qKTCt9MLU0NCNIgaMJCgeyhujhasnFUsYMsi0Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0-r9vXk5Zbs8Ipua8X2lMvfW8xHOaRvM&callback=initialize&libraries=geometry,places&v=weekly"
+        async
+></script>
+
+<script src="map.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</script>
+</body>
+</html>

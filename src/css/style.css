@@ -1,0 +1,561 @@
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.button, .profile {
+  outline: none;
+}
+.button:hover, .profile:hover {
+  cursor: pointer;
+}
+
+input {
+  border: #5c5c5c;
+  padding-left: 8px;
+}
+input:focus {
+  outline: none;
+}
+
+.main-body {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.main-body .content {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.main-body .content .brand {
+  height: 6vh;
+  padding: 0 40px;
+  background-color: #4a4a4a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #f4f4f4;
+}
+.main-body .content .brand .left .logo {
+  display: flex;
+  flex-direction: column;
+}
+.main-body .content .brand .left .logo .app {
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+.main-body .content .brand .left .logo .company {
+  font-size: 10px;
+  font-weight: 500;
+}
+.main-body .content .brand .left .menu {
+  font-size: 16px;
+  display: none;
+}
+.main-body .content .brand .right {
+  display: flex;
+  gap: 40px;
+}
+.main-body .content .brand .right .plans {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.main-body .content .brand .right .plans .pro-plan {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  letter-spacing: 0.6px;
+}
+.main-body .content .brand .right .profile {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 14px 4px;
+  border-radius: 6px;
+  border: none;
+}
+.main-body .content .brand .right .profile .icon {
+  font-size: 20px;
+}
+.main-body .content .brand .right .profile:hover {
+  background-color: #5c5c5c;
+}
+.main-body .content .planner {
+  height: 13vh;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 40px;
+  background-color: #f6f6f6;
+  gap: 15px;
+}
+.main-body .content .planner .top {
+  display: flex;
+  justify-content: space-between;
+}
+.main-body .content .planner .top .left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.main-body .content .planner .top .left .type {
+  font-size: 18px;
+  font-weight: lighter;
+  letter-spacing: 0.8px;
+}
+.main-body .content .planner .top .left .info-circle {
+  color: royalblue;
+}
+.main-body .content .planner .top .right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.main-body .content .planner .top .right .planner-btn {
+  padding: 6px 8px;
+  font-size: 14px;
+  display: flex;
+  gap: 8px;
+  background-color: #E6E6E6;
+  border: none;
+  border-radius: 4px;
+  color: #4a4a4a;
+}
+.main-body .content .planner .top .right .yellow {
+  background-color: #f8ba07;
+}
+.main-body .content .planner .bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  color: #4a4a4a;
+}
+.main-body .content .planner .bottom .item {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.main-body .content .planner .bottom .item .select {
+  flex: 1 1 0;
+  padding: 8px 10px;
+  background-color: #e8e8e8;
+  outline: none;
+  border: none;
+  font-size: 12px;
+  color: #4a4a4a;
+  letter-spacing: 0.6px;
+  border-radius: 10px;
+}
+.main-body .content .planner .bottom .item .icon {
+  font-size: 12px;
+}
+.main-body .content .planner .bottom .item .pen {
+  color: #4d90fe;
+  cursor: pointer;
+}
+.main-body .content .main {
+  height: 87vh;
+  display: grid;
+  justify-self: stretch;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+}
+.main-body .content .main .slider {
+  overflow-y: auto;
+  padding: 16px;
+  background-color: #e8e8e8;
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.main-body .content .main .slider .stops {
+  background-color: #f6f6f6;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.main-body .content .main .slider .stops .heading {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.main-body .content .main .slider .stops .heading .route {
+  color: #5c5c5c;
+}
+.main-body .content .main .slider .stops .heading .title {
+  font-size: 14px;
+}
+.main-body .content .main .slider .stops .stop-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.main-body .content .main .slider .stops .stop-input-group .toll-div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #4a4a4a;
+}
+.main-body .content .main .slider .stops .stop-input-group .toll-div .time {
+  display: flex;
+  gap: 20px;
+}
+.main-body .content .main .slider .stops .stop-input-group .input-row select {
+  border: none;
+  border-right: 1px solid #e8e8e8 !important;
+  width: 68px;
+  font-size: 12px;
+}
+.main-body .content .main .slider .stops .stop-input-group .input-row .controls {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: #fff;
+  font-family: Roboto, serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 260px;
+  color: #5c5c5c;
+}
+.main-body .content .main .slider .stops .stop-input-group .input-row .first {
+  border-left: 1px solid #e8e8e8 !important;
+}
+.main-body .content .main .slider .stops .stop-input-group .input-row .close-btn-rare, .main-body .content .main .slider .stops .stop-input-group .input-row .star-btn {
+  border: none;
+  background-color: #fff;
+}
+.main-body .content .main .slider .stops .stop-input-group .input-row .close-btn-rare .close, .main-body .content .main .slider .stops .stop-input-group .input-row .star-btn .close {
+  padding: 2px 12px;
+  color: #5c5c5c;
+}
+.main-body .content .main .slider .stops .extended-options {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: #116afd;
+  gap: 14px;
+}
+.main-body .content .main .slider .stops .extended-options .optimized-option, .main-body .content .main .slider .stops .extended-options .reset-option {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  cursor: pointer;
+}
+.main-body .content .main .slider .route {
+  background-color: #f6f6f6;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.main-body .content .main .slider .route .heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.main-body .content .main .slider .route .heading .left {
+  align-items: center;
+  display: flex;
+}
+.main-body .content .main .slider .route .heading .left .route {
+  color: #5c5c5c;
+}
+.main-body .content .main .slider .route .heading .left .title {
+  font-size: 14px;
+}
+.main-body .content .main .slider .route .heading .button {
+  border: none;
+  background-color: inherit;
+}
+.main-body .content .main .slider .route #body {
+  display: flex;
+  flex-direction: column;
+}
+.main-body .content .main .slider .route #body .mode {
+  padding: 20px 0;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto;
+  gap: 16px;
+}
+.main-body .content .main .slider .route #body .mode select {
+  font-size: 12px;
+  border: 2px solid rgba(92, 92, 92, 0.41);
+}
+.main-body .content .main .slider .route #body .mode select .pro-tag {
+  color: #f8ba07;
+  background-color: #4a4a4a;
+  padding: 10px;
+  font-size: 20px;
+}
+.main-body .content .main .slider .route #body .mode select:focus {
+  outline: none;
+}
+.main-body .content .main .slider .route #body .mode .form-check-input:hover {
+  cursor: not-allowed;
+}
+.main-body .content .main .slider .route #body .mode .mode-tag, .main-body .content .main .slider .route #body .mode .traffic-tag, .main-body .content .main .slider .route #body .mode .time-tag {
+  font-size: 13px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.main-body .content .main .slider .route #body .mode .mode-tag .pro-tag, .main-body .content .main .slider .route #body .mode .traffic-tag .pro-tag, .main-body .content .main .slider .route #body .mode .time-tag .pro-tag {
+  font-size: 11px;
+  padding: 2px 10px;
+  background-color: #4a4a4a;
+  border: none;
+  border-radius: 10px;
+  color: #f8ba07;
+}
+.main-body .content .main .slider .route #body .mode .mode-tag .info, .main-body .content .main .slider .route #body .mode .traffic-tag .info, .main-body .content .main .slider .route #body .mode .time-tag .info {
+  color: #116afd;
+}
+.main-body .content .main #map {
+  grid-column: 2/2;
+}
+.main-body .content .main .footer-data {
+  padding: 8px 0;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+.main-body .content .main .footer-data .distance, .main-body .content .main .footer-data .time, .main-body .content .main .footer-data .Cost-per-KM, .main-body .content .main .footer-data .cost, .main-body .content .main .footer-data .toll {
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.main-body .content .main .footer-data .distance span, .main-body .content .main .footer-data .time span, .main-body .content .main .footer-data .Cost-per-KM span, .main-body .content .main .footer-data .cost span, .main-body .content .main .footer-data .toll span {
+  color: #5c5c5c;
+  font-size: 12px;
+}
+.main-body #edit-vehicle {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(92, 92, 92, 0.35);
+}
+.main-body #edit-vehicle .dialog {
+  width: 50%;
+  height: 90%;
+  overflow-y: auto;
+  background-color: #f4f4f4;
+  font-size: 13px;
+  z-index: 10;
+}
+.main-body #edit-vehicle .dialog input, .main-body #edit-vehicle .dialog select {
+  outline: none;
+  background-color: #e8e8e8;
+  padding: 3px 10px;
+  border: 2px solid rgba(92, 92, 92, 0.27);
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.main-body #edit-vehicle .dialog input:focus, .main-body #edit-vehicle .dialog select:focus {
+  outline: none;
+}
+.main-body #edit-vehicle .dialog .header, .main-body #edit-vehicle .dialog .detail, .main-body #edit-vehicle .dialog .finance, .main-body #edit-vehicle .dialog .toll, .main-body #edit-vehicle .dialog .footer {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  align-items: center;
+}
+.main-body #edit-vehicle .dialog .header span, .main-body #edit-vehicle .dialog .detail span, .main-body #edit-vehicle .dialog .finance span, .main-body #edit-vehicle .dialog .toll span, .main-body #edit-vehicle .dialog .footer span {
+  font-weight: 500;
+}
+.main-body #edit-vehicle .dialog .header span .label-icon, .main-body #edit-vehicle .dialog .detail span .label-icon, .main-body #edit-vehicle .dialog .finance span .label-icon, .main-body #edit-vehicle .dialog .toll span .label-icon, .main-body #edit-vehicle .dialog .footer span .label-icon {
+  color: #0045ba;
+}
+.main-body #edit-vehicle .dialog .header .left {
+  font-size: 14px;
+  color: #5c5c5c;
+}
+.main-body #edit-vehicle .dialog .header .right {
+  text-align: right;
+}
+.main-body #edit-vehicle .dialog .header .right #close-edit-vehicle {
+  cursor: pointer;
+}
+.main-body #edit-vehicle .dialog .detail .left, .main-body #edit-vehicle .dialog .detail .right {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  gap: 20px;
+}
+.main-body #edit-vehicle .dialog .detail .left .title, .main-body #edit-vehicle .dialog .detail .right .title {
+  color: #5c5c5c;
+  font-size: 14px;
+}
+.main-body #edit-vehicle .dialog .detail .left .body, .main-body #edit-vehicle .dialog .detail .right .body {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  align-items: center;
+}
+.main-body #edit-vehicle .dialog .finance .left, .main-body #edit-vehicle .dialog .finance .right {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  gap: 20px;
+}
+.main-body #edit-vehicle .dialog .finance .left .title, .main-body #edit-vehicle .dialog .finance .right .title {
+  color: #5c5c5c;
+  font-size: 14px;
+}
+.main-body #edit-vehicle .dialog .finance .left .body, .main-body #edit-vehicle .dialog .finance .right .body {
+  display: grid;
+  row-gap: 16px;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.main-body #edit-vehicle .dialog .toll .left, .main-body #edit-vehicle .dialog .toll .right {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  gap: 20px;
+}
+.main-body #edit-vehicle .dialog .toll .left .title, .main-body #edit-vehicle .dialog .toll .right .title {
+  color: #5c5c5c;
+  font-size: 14px;
+}
+.main-body #edit-vehicle .dialog .toll .left .body, .main-body #edit-vehicle .dialog .toll .right .body {
+  display: grid;
+  row-gap: 16px;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+.main-body #edit-vehicle .dialog .footer button {
+  width: 20%;
+  padding: 8px 10px;
+  background-color: #f8ba07;
+  color: #5c5c5c;
+  border: none;
+  border-radius: 10px;
+  justify-self: end;
+  cursor: pointer;
+}
+.main-body #edit-driver {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(92, 92, 92, 0.35);
+}
+.main-body #edit-driver .dialog {
+  width: 50%;
+  overflow-y: auto;
+  background-color: #f4f4f4;
+  font-size: 13px;
+}
+.main-body #edit-driver .dialog input, .main-body #edit-driver .dialog select {
+  outline: none;
+  background-color: #e8e8e8;
+  padding: 3px 10px;
+  border: 2px solid rgba(92, 92, 92, 0.27);
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.main-body #edit-driver .dialog input:focus, .main-body #edit-driver .dialog select:focus {
+  outline: none;
+}
+.main-body #edit-driver .dialog .header, .main-body #edit-driver .dialog .detail, .main-body #edit-driver .dialog .finance, .main-body #edit-driver .dialog .footer {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  align-items: center;
+}
+.main-body #edit-driver .dialog .header .left {
+  font-size: 14px;
+  color: #5c5c5c;
+}
+.main-body #edit-driver .dialog .header .right {
+  text-align: right;
+}
+.main-body #edit-driver .dialog .header .right #close-edit-vehicle {
+  cursor: pointer;
+}
+.main-body #edit-driver .dialog .detail .left, .main-body #edit-driver .dialog .detail .right {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  gap: 20px;
+}
+.main-body #edit-driver .dialog .detail .left .title, .main-body #edit-driver .dialog .detail .right .title {
+  color: #5c5c5c;
+  font-size: 14px;
+}
+.main-body #edit-driver .dialog .detail .left .body, .main-body #edit-driver .dialog .detail .right .body {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  align-items: center;
+}
+.main-body #edit-driver .dialog .finance .left, .main-body #edit-driver .dialog .finance .right {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  gap: 20px;
+}
+.main-body #edit-driver .dialog .finance .left .title, .main-body #edit-driver .dialog .finance .right .title {
+  color: #5c5c5c;
+  font-size: 14px;
+}
+.main-body #edit-driver .dialog .finance .left .body, .main-body #edit-driver .dialog .finance .right .body {
+  display: grid;
+  row-gap: 16px;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+.main-body #edit-driver .dialog .footer button {
+  width: 20%;
+  padding: 8px 10px;
+  background-color: #f8ba07;
+  color: #5c5c5c;
+  border: none;
+  border-radius: 10px;
+  justify-self: end;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .content .brand .left .logo {
+    display: none;
+  }
+  .content .brand .left .menu {
+    display: inline-block;
+  }
+  .content .brand .right .plans .trial {
+    display: none;
+  }
+}
+@media screen and (max-width: 480px) {
+  .content .brand .right .plans .pro-plan {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
